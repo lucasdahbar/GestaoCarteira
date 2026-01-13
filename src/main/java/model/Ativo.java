@@ -4,8 +4,37 @@ import java.math.BigDecimal;
 public abstract class Ativo {
     private String nome;
     private String ticker;
-    private BigDecimal preçoAtual; // não vamos usar double para evitar erros com valores muito grandes;
+    private BigDecimal precoAtual; // não vamos usar double para evitar imprecisão
     private boolean restritoQualificados;
-    private TipoRenda TipoRenda; // fixa/variável
-    private Origem Origem; // nacional/internacional;
+    private TipoRenda tipoRenda; // fixa/variável
+    private Origem origem; // nacional/internacional;
+
+    public Ativo(String nome, String ticker, BigDecimal precoAtual, boolean restritoQualificados, TipoRenda tipoRenda, Origem origem) {
+        if (nome == null || nome.isBlank()) {
+            throw new AtivoInvalidoException("Nome do ativo não pode ser nulo ou vazio.");
+        }
+
+        if (ticker == null || ticker.isBlank()) {
+            throw new AtivoInvalidoException("Ticker do ativo não pode ser nulo ou vazio.");
+        }
+
+        if (precoAtual == null || precoAtual.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new AtivoInvalidoException("Preço do ativo deve ser maior que zero.");
+        }
+
+        if (tipoRenda == null) {
+            throw new AtivoInvalidoException("Tipo de renda do ativo não pode ser nulo.");
+        }
+
+        if (origem == null) {
+            throw new AtivoInvalidoException("Origem do ativo não pode ser nula.");
+        }
+
+        this.nome = nome;
+        this.ticker = ticker;
+        this.precoAtual = precoAtual;
+        this.restritoQualificados = restritoQualificados;
+        this.tipoRenda = tipoRenda;
+        this.origem = origem;
+    }
 }
