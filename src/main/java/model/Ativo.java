@@ -47,7 +47,7 @@ public abstract class Ativo {
         return precoAtual;
     }
 
-    public boolean isRestritoQualificados() {
+    public boolean isQualificados() {
         return restritoQualificados;
     }
 
