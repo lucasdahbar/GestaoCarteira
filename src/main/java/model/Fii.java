@@ -3,9 +3,9 @@ package model;
 import java.math.BigDecimal;
 
 public class Fii extends Ativo {
-    private String segmento;
-    private BigDecimal ultimoDividendo;
-    private BigDecimal taxaAdministracao;
+    private final String segmento;
+    private final BigDecimal ultimoDividendo;
+    private final BigDecimal taxaAdministracao;
 
     public Fii(String nome,
                String ticker,
@@ -32,6 +32,23 @@ public class Fii extends Ativo {
         this.segmento = segmento;
         this.ultimoDividendo = ultimoDividendo;
         this.taxaAdministracao = taxaAdministracao;
+    }
+
+    public String getSegmento() {
+        return segmento;
+    }
+
+    public BigDecimal getUltimoDividendo() {
+        return ultimoDividendo;
+    }
+
+    public BigDecimal getTaxaAdministracao() {
+        return taxaAdministracao;
+    }
+
+    // metodo que exibe a taxa concatenada + %
+    public String getTaxaAdministracaoFormatada() {
+        return taxaAdministracao.toPlainString() + "%";
     }
 
 }
